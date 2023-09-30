@@ -2,10 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(GroundChecker), typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private float _force;
+
+    private SpriteRenderer _spriteRenderer;
+    private GroundChecker _groundChecker;
+    private PlayerAnimations _playerAnimations;
+    private PlayerInput _playerInput;
+    private Rigidbody2D _rigidbody;
+
+    private void Start()
+    {
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _groundChecker = GetComponent<GroundChecker>();
+        _playerAnimations = GetComponent<PlayerAnimations>();
+        _playerInput = GetComponent<PlayerInput>();
+        _rigidbody = GetComponent<Rigidbody2D>();
+    }
 
     private void Update()
     {
@@ -15,10 +31,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        var moveDirection = GetComponent<PlayerInput>().HorizontalInput();
+        var moveDirection = _playerInput.HorizontalInput();
 
-        if (GetComponent<GroundChecker>().GroundCheck)
-            GetComponent<PlayerAnimations>().RunAnimation(moveDirection != 0);
+        if (_groundChecker.GroundCheck)
+            _playerAnimations.RunAnimation(moveDirection != 0);
 
         FlipPlayer(moveDirection < 0f);
         transform.position += new Vector3(moveDirection * _speed * Time.deltaTime, 0);
@@ -26,17 +42,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        var groundChecker = GetComponent<GroundChecker>().GroundCheck;
         var playerAnimation = GetComponent<PlayerAnimations>();
 
-        if (GetComponent<PlayerInput>().JumpInput() && groundChecker)
-            GetComponent<Rigidbody2D>().AddForce(new Vector2(0, _force));
+        if (_playerInput.JumpInput() && _groundChecker.GroundCheck)
+            _rigidbody.AddForce(new Vector2(0, _force));
 
-        playerAnimation.JumpAnimation(!groundChecker);
+        playerAnimation.JumpAnimation(!_groundChecker.GroundCheck);
     }
 
     private void FlipPlayer(bool flag)
     {
-        GetComponent<SpriteRenderer>().flipX = flag;
+        _spriteRenderer.flipX = flag;
     }
 }

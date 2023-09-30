@@ -6,11 +6,13 @@ public class HomeSignalization : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        GetComponent<HomeSound>().OnAlarm();
+        if (collision.TryGetComponent<Player>(out Player player))
+            GetComponent<HomeSound>().OnAlarm();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        GetComponent<HomeSound>().OffAlarm();
+        if (collision.TryGetComponent<Player>(out Player player))
+            GetComponent<HomeSound>().OffAlarm();
     }
 }

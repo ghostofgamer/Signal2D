@@ -8,13 +8,13 @@ public class GroundChecker : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.GetComponent<Floor>())
-        GroundCheck = true;
+        if (collision.gameObject.TryGetComponent<Floor>(out Floor floor))
+            GroundCheck = true;
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if(collision.gameObject.GetComponent<Floor>())
-        GroundCheck = false;
+        if (collision.gameObject.TryGetComponent<Floor>(out Floor floor))
+            GroundCheck = false;
     }
 }
