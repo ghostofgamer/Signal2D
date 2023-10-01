@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoinSpawn : MonoBehaviour
+public class CoinSpawner : MonoBehaviour
 {
     [SerializeField] private Coin _prefab;
     [SerializeField] private int _countSpawnCoin;
@@ -23,7 +23,7 @@ public class CoinSpawn : MonoBehaviour
     {
         for (int i = 0; i < _countSpawnCoin; i++)
         {
-            Instantiate(_prefab, _pointSpawn[i].position,Quaternion.identity);
+            Instantiate(_prefab, _pointSpawn[i].position, Quaternion.identity);
             yield return _waitForSeconds;
         }
     }
