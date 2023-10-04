@@ -5,6 +5,7 @@ using UnityEngine;
 public class CoinTrigger : MonoBehaviour
 {
     private Coroutine _coroutine;
+    private float _howManySeconds = 0.3f;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -13,14 +14,16 @@ public class CoinTrigger : MonoBehaviour
             if (_coroutine != null)
                 StopCoroutine(_coroutine);
 
-            _coroutine = StartCoroutine(PlaySoundCoin());
+            _coroutine = StartCoroutine(PlaySoundCoin(player));
         }
     }
 
-    private IEnumerator PlaySoundCoin()
+    private IEnumerator PlaySoundCoin(Player player)
     {
+        var waitForSeconds = new WaitForSeconds(_howManySeconds);
         GetComponent<AudioSource>().Play();
-        yield return new WaitForSeconds(0.3f);
+        player.AddCoin();
+        yield return waitForSeconds;
         gameObject.SetActive(false);
     }
 }
