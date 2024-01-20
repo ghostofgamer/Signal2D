@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FirsAid : MonoBehaviour
@@ -9,9 +8,8 @@ public class FirsAid : MonoBehaviour
 
     private AudioSource _audioSource;
     private Coroutine _changer;
-
-    private readonly float _heal = 10f;
-    private readonly float _waitTime = 0.5f;
+    private float _heal = 10f;
+    private float _waitTime = 0.5f;
 
     private void Start()
     {

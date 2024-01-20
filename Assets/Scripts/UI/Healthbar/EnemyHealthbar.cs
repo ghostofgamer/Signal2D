@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHealthbar : Healthbar
+public class EnemyHealthBar : HealthBar
 {
     [SerializeField] private Enemy _enemy;
 
@@ -16,7 +14,7 @@ public class EnemyHealthbar : Healthbar
         _enemy.HealthChanged -= GetValue;
     }
 
-    protected override void Setvalue()
+    protected override void SetValue()
     {
         Slider.maxValue = _enemy.MaxHealth;
         Slider.value = Slider.maxValue;

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
@@ -13,12 +12,10 @@ public class EnemyMover : MonoBehaviour
     private Coroutine _changer;
     private int _currentPosition;
     private float _distance;
-
-    private readonly float _speed = 3f;
-    private readonly float _timer = 1f;
-    private readonly float _distanceAttack = 1.5f;
-    private readonly float _visibilityDistance = 6f;
-
+    private float _speed = 3f;
+    private float _timer = 1f;
+    private float _distanceAttack = 1.5f;
+    private float _visibilityDistance = 6f;
 
     private void Start()
     {

@@ -3,18 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class Healthbar : MonoBehaviour
+public abstract class HealthBar : MonoBehaviour
 {
     [SerializeField] protected Slider Slider;
     [SerializeField] protected Gradient Gradient;
 
     private Coroutine _changer;
-
-    private readonly float _speed = 60f;
+    private float _speed = 60f;
 
     private void Start()
     {
-        Setvalue();
+        SetValue();
         ChangeColor();
     }
 
@@ -42,5 +41,5 @@ public abstract class Healthbar : MonoBehaviour
         Slider.fillRect.GetComponent<Image>().color = Gradient.Evaluate(speedGradientChanged);
     }
 
-    protected abstract void Setvalue();
+    protected abstract void SetValue();
 }

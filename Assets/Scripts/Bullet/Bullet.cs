@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -15,9 +13,7 @@ public class Bullet : MonoBehaviour
     private void Update()
     {
         if (_flipX)
-        {
             Move(-_speed, _flipX);
-        }
         else
             Move(_speed, _flipX);
     }

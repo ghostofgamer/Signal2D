@@ -1,25 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
 public class CoinScore : MonoBehaviour
 {
-    [SerializeField] private TMP_Text _CoinText;
-    [SerializeField] private Player _player;
+    [SerializeField] private TMP_Text _coinText;
+    [SerializeField] private Wallet _wallet;
 
     private void OnEnable()
     {
-        _player.CoinChanged += OnCoinChanged;
+        _wallet.CoinChanged += OnCoinChanged;
     }
 
     private void OnDisable()
     {
-        _player.CoinChanged -= OnCoinChanged;
+        _wallet.CoinChanged -= OnCoinChanged;
     }
 
     private void OnCoinChanged(int coint)
     {
-        _CoinText.text = coint.ToString();
+        _coinText.text = coint.ToString();
     }
 }
