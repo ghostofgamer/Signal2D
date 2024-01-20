@@ -20,7 +20,7 @@ public class FirsAid : MonoBehaviour
     {
         if (collision.TryGetComponent(out Player player))
         {
-            if (player.CurrentHealth < player.MaxHealth)
+            if (player.GetComponent<Health>().CurrentHealth < player.GetComponent<Health>().MaxHealth)
             {
                 if (_changer != null)
                     StopCoroutine(_changer);
